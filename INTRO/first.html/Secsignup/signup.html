@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <form name="logform" onsubmit="event.preventDefault()">
+        <label for="email">Email:</label>
+        <input type="email" name="email">
+        <label for="password">Password:</label>
+        <input type="text" name="pwd">
+        <button type="submit" onclick="validateForm()">Submit</button>
+    </form>
+    <script>
+
+        async  function postdata(url="",data={}){
+           const response=await fetch(url,{
+            method:'POST',
+            // mode:"cors",
+            // cache:"no-cache",
+            // credentials:"same-origin",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            // redirect:"follow",
+            // referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
+           });
+           return response.json();
+        }
+        //postdata(" https://reqres.in/api/login",{"email": "eve.holt@reqres.in","password": "cityslicka"
+//}).then((data)=>{
+    //            console.log(data);
+          //  })
+        async function validateForm(){
+            // e.preventDefault();
+            // e.stopPropagation();
+            console.log("hi");
+            let x = document.forms["logform"]["email"].value;
+            console.log(document.forms["logform"])
+            console.log(x);
+            let y=document.forms["logform"]["pwd"].value;
+            console.log(y);
+           await  postdata(" https://reqres.in/api/login",{email:x,password:y}).then((data)=>{
+            console.log(data);
+               let c="YOUR TOKEN IS";
+                window.alert(c+(data.token));
+            }).catch((err)=>{
+                 let d="ERROR!"
+                 window.alert(d+err);
+            });
+        }
+        
+    </script>
+</body>
+</html>

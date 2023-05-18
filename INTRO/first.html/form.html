@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>SIGN UP FORM</h1>
+    
+    <form name="myform" onsubmit="validateForm()">
+        <label for="eduqua">Choose your qualification:</label>
+        
+       <select name="eduqua" id="qualification">
+         <option value="Undergraduate">Undergraduate</option>
+         <option value="Postgraduate">Postgraduate</option>
+         <option value="Secondary Education">Secondary Education</option>
+         <option value="Senior secondary education">Senior secondary education</option>
+        </select><br><br>
+        <label for="contno">Contact No.:</label>
+        <input type="text" id="contact" name="contact"><br><br>
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age"><br><br>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender"><br><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br><br>
+        <label for="passwd">Password:</label>
+        <input type="password" id="pwd" name="pwd"><br><br>
+        <label for="conpasswd">Confirm Password:</label>
+        <input type="password" id="cpwd" name="cpwd"><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city"><br><br>
+        <button type="submit">Submit</button>
+      </form>
+      <script>
+        function validateForm(){
+         let x = document.forms["myform"]["contact"].value;
+         let y=document.forms["myform"]["pwd"].value;
+         let z=document.forms["myform"]["cpwd"].value;
+         let a=document.forms["myform"]["age"].value;
+         let b=document.forms["myform"]["city"].value;
+        if ((x.search(/^[+]91 \d{10}/gm)<0) && (x.search(/^\d{10}/gm)<0)){
+            alert("Enter India's Contact No.!!");
+        }
+        else if(y!=z){
+            alert("Password does not match!!");
+        }
+        else if ((x.search(/^[1-9]{1}$/g)<0) && x.search(/^[1-9]{1}[0-9]{1}$/g) && x.search(/^[1,2]{1}[0-9]{1}[0-9]{1}$/g)){
+               alert("Enter valid age!!")
+        }
+    }
+      </script>
+</body>
+</html>

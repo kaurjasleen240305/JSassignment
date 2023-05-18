@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Table </title>
+    <style>
+        .table tr th{
+            background-color:#FF7F7F;
+            padding:20px;
+        }
+        .table tr td{
+            background-color:bisque;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>USER DATA WITH THEIR AVATARS</h1>
+    <table id="fancy" class="table">
+         <tr>
+            <th>ID</th>
+            <th>EMAIL</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>AVATAR</th>
+         </tr>
+    </table>
+    <script>
+        fetch("data.json").then((response)=>{
+            if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+       return  response.json();
+        }).then((json)=>{
+            const a=json.data;
+            var table=document.getElementById("fancy");
+            for (let i=0;i<a.length;i++){
+                var row=table.insertRow(i+1);
+                var c=a[i].avatar;
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4= row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                cell1.innerHTML=a[i].id;
+                cell2.innerHTML=a[i].email;
+                cell3.innerHTML=a[i].first_name;
+                cell4.innerHTML=a[i].last_name;
+                cell5.innerHTML='<th><img src="'+c+'" width="50px" height="50px"></th>';
+            }
+        }).catch((error) => {
+            document.getElementById("demo").innerHTML = `Could not fetch verse: ${error}`;
+  });
+    </script>
+</body>
+</html>
